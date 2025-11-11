@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: yep-pod
+  namespace: yep
+spec:
+  containers:
+    - name: nginx
+      image: nginx:1.26.0
+      ports:
+        - containerPort: 80
