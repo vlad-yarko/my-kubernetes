@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: echo-date-parallel
+  namespace: working-namespace
+spec:
+  template:
+    metadata:
+        labels:
+          app: echo-date
+    spec:
+      containers:
+        - name: ehco
+          image: cgr.dev/chainguard/busybox:latest
+          command: ["date"]
+          resources:
+            limits:
+              memory: "50Mi"
+            requests:
+              memory: "50Mi"
+              cpu: "250m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            runAsUser: 1001
+            runAsGroup: 1001
+            runAsNonRoot: true
+      restartPolicy: Never
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+  backoffLimit: 1
+  parallelism: 2
+  completions: 4
+  activeDeadlineSeconds: 100
