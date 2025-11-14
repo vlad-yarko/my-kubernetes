@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: configmaps-job-job
+spec:
+  template:
+    spec:
+      automountServiceAccountToken: true
+      containers:
+        - name: configmaps-job-kubectl
+          image: cgr.dev/chainguard/kubectl
+          args: ["get", "configmaps", "-n", "default"]
+      serviceAccountName: configmaps-job-sa
+      restartPolicy: Never
+  backoffLimit: 2
