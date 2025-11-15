@@ -6,4 +6,4 @@ metadata:
 rules:
 - apiGroups: [""]  # "" means core API group
   resources: ["configmaps"]
-  verbs: ["get"]
+  verbs: ["get", "list"]
