@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.migrationJobName }}
+  namespace: {{ .Values.sharedNamespace }}
+spec:
+  backoffLimit: {{ .Values.migrationJobBackoffLimit }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-{{ .Values.migrationJobPodName }}
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: {{ .Release.Name }}-{{ .Values.migrationJobContainerName }}
+          image: {{ .Values.migrationJobImage }}
+          args:
+            - -path=/app/migrations
+            - -database=$(DATABASE_URL)?sslmode=disable
+            - up
+          envFrom:
+            - secretRef:
+                name: {{ .Release.Name }}-{{ .Values.secretName }}
