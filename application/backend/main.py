@@ -1,6 +1,7 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy import select
+from fastapi.responses import JSONResponse
+from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from .engine import get_session
@@ -38,3 +39,13 @@ async def get_requests(session: AsyncSession = Depends(get_session())):
     return {
         "count": requests_data.count
     }
+
+
+@app.get("/health")
+async def health_endpoint(session: AsyncSession = Depends(get_session())):
+    try:
+        await session.execute(text("SELECT 1"))
+        return JSONResponse(content={"status": "ok"}, status_code=status.HTTP_200_OK)
+    except Exception:
+        return JSONResponse(content={"status": "error"}, status_code=status.HTTP_503_SERVICE_UNAVAILABLE)
+

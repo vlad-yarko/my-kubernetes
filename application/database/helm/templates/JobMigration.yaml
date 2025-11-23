@@ -3,6 +3,8 @@ kind: Job
 metadata:
   name: {{ .Release.Name }}-{{ .Values.migrationJobName }}
   namespace: {{ .Values.sharedNamespace }}
+  # annotations:
+  #   "helm.sh/hook": pre-install
 spec:
   backoffLimit: {{ .Values.migrationJobBackoffLimit }}
   template:
@@ -11,6 +13,24 @@ spec:
         app: {{ .Release.Name }}-{{ .Values.migrationJobPodName }}
     spec:
       restartPolicy: OnFailure
+      initContainers:
+        - name: {{ .Release.Name }}-{{ .Values.migrationJobContainerName }}-init
+          image: postgres:15
+          command:
+            - sh
+            - -c
+            - |
+              echo "Waiting for PostgreSQL to be ready..."
+              until pg_isready -h "$HOST" -p "{{ include "postgres_port" . }}"; do
+                sleep 1;
+              done
+              echo "PostgreSQL is up!"
+          env:
+          - name: HOST
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-{{ .Values.secretName }}
+                key: DB_HOST
       containers:
         - name: {{ .Release.Name }}-{{ .Values.migrationJobContainerName }}
           image: {{ .Values.migrationJobImage }}
