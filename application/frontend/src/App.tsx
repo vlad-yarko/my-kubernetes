@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
 
-import api from './api'
+// import api from './api'
+import axios from 'axios'
 
 
 export default function App() {
     const [ count, setCount ] = useState(0)
 
     const fetchCount = async (): Promise<number> => {
-        let response = await api.get("/requests")
+        // let response = await api.get("/requests")
+        let response = await axios.get("/api/requests")
+        // console.log("API", response.data)
         const data = response.data
         return data.count
     }

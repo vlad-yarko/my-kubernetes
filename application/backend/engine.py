@@ -6,7 +6,7 @@ from dotenv import find_dotenv, load_dotenv
 
 load_dotenv(find_dotenv())
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = os.getenv("BACKEND_DATABASE_URL")
 
 
 engine = create_async_engine(   

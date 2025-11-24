@@ -1,20 +1,20 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ .Release.Name }}-{{ .Values.migrationJobName }}
+  name: {{ .Values.database.migrationJobName }}
   namespace: {{ .Values.sharedNamespace }}
   # annotations:
   #   "helm.sh/hook": pre-install
 spec:
-  backoffLimit: {{ .Values.migrationJobBackoffLimit }}
+  backoffLimit: {{ .Values.database.migrationJobBackoffLimit }}
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-{{ .Values.migrationJobPodName }}
+        app: {{ .Values.database.migrationJobPodName }}
     spec:
       restartPolicy: OnFailure
       initContainers:
-        - name: {{ .Release.Name }}-{{ .Values.migrationJobContainerName }}-init
+        - name: {{ .Values.database.migrationJobContainerName }}-init
           image: postgres:15
           command:
             - sh
@@ -29,15 +29,15 @@ spec:
           - name: HOST
             valueFrom:
               secretKeyRef:
-                name: {{ .Release.Name }}-{{ .Values.secretName }}
+                name: {{ .Values.database.secretName }}
                 key: DB_HOST
       containers:
-        - name: {{ .Release.Name }}-{{ .Values.migrationJobContainerName }}
-          image: {{ .Values.migrationJobImage }}
+        - name: {{ .Values.database.migrationJobContainerName }}
+          image: {{ .Values.database.migrationJobImage }}
           args:
             - -path=/app/migrations
             - -database=$(DATABASE_URL)?sslmode=disable
             - up
           envFrom:
             - secretRef:
-                name: {{ .Release.Name }}-{{ .Values.secretName }}
+                name: {{ .Values.database.secretName }}

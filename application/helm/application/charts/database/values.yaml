@@ -7,8 +7,12 @@ replication:
   replicaCount: 2
 # image:
 #   repository: bitnamilegacy/postgresql
+auth:
+  postgresPassword: "1234"
+fullnameOverride: "database-postgresql"
 
 postgresql:
+  fullnameOverride: "database-postgresql"
   auth:
     postgresPassword: "1234"
   architecture: replication
@@ -26,10 +30,23 @@ postgresql:
 image:
   repository: bitnamilegacy/postgresql
 
+primary:
+  resources:
+    requests:
+      cpu: 50m
+      memory: 25m
+    limits:
+      cpu: 100m
+      memory: 50m
+
+
 sharedNamespace: my-kubernetes-application
-migrationJobImage: ghcr.io/vlad-yarko/my-kubernetes-database:1.0.0
-migrationJobName: job-migration
-migrationJobPodName: job-migration-pod
-migrationJobContainerName: job-migration-container
-migrationJobBackoffLimit: 3
-secretName: database-secret
+
+database:
+  secretName: database-secret
+  migrationJobImage: ghcr.io/vlad-yarko/my-kubernetes-database:1.0.0
+  migrationJobName: database-job-migration
+  migrationJobPodName: database-job-migration-pod
+  migrationJobContainerName: database-job-migration-container
+  migrationJobBackoffLimit: 3
+  host: "database-postgresql"

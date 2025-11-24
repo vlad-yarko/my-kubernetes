@@ -1,0 +1,12 @@
+# sharedNamespace: my-kubernetes-application
+
+# Ingress:
+#   name: my-kubernetes-ingress-resource
+
+# backend:
+#   middleware:
+#     name: backend-middleware
+
+#   service:
+#     name: backend-service
+#     port: 8000

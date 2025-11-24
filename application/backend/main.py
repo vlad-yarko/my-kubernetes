@@ -4,8 +4,8 @@ from fastapi.responses import JSONResponse
 from sqlalchemy import select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from .engine import get_session
-from .models import Request
+from engine import get_session
+from models import Request
 
 
 origins = [
@@ -24,25 +24,44 @@ app.add_middleware(
 )
 
 
+# @app.get("/requests")
+# async def get_requests(session: AsyncSession = Depends(get_session)):
+#     stmt = (
+#         select(Request)
+#         .where(Request.id == True)
+#         .with_for_update()
+#     )
+#     result = await session.execute(stmt)
+#     requests_data = result.scalar_one()
+#     requests_data.count += 1
+#     await session.commit()
+#     await session.refresh(requests_data)
+#     return {
+#         "count": requests_data.count
+#     }
+
+
 @app.get("/requests")
-async def get_requests(session: AsyncSession = Depends(get_session())):
-    stmt = (
-        select(Request)
-        .where(Request.id == True)
-        .with_for_update()
-    )
+async def get_requests(session: AsyncSession = Depends(get_session)):
+    stmt = select(Request).where(Request.id == True).with_for_update()
     result = await session.execute(stmt)
-    requests_data = result.scalar_one()
+    requests_data = result.scalar_one_or_none()
+
+    if not requests_data:
+        requests_data = Request()
+        session.add(requests_data)
+        await session.commit()
+        await session.refresh(requests_data)
+
     requests_data.count += 1
     await session.commit()
     await session.refresh(requests_data)
-    return {
-        "count": requests_data.count
-    }
+
+    return {"count": requests_data.count}
 
 
 @app.get("/health")
-async def health_endpoint(session: AsyncSession = Depends(get_session())):
+async def health_endpoint(session: AsyncSession = Depends(get_session)):
     try:
         await session.execute(text("SELECT 1"))
         return JSONResponse(content={"status": "ok"}, status_code=status.HTTP_200_OK)

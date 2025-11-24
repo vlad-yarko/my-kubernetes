@@ -1,6 +1,6 @@
 apiVersion: v2
-name: my-kubernetes-backend-chart
-description: Backend chart of my-kubernetes
+name: my-kubernetes-umbrella-chart
+description: Umbrella chart of my-kubernetes
 type: application
 
 # Chart version — updates when chart templates/values change
@@ -29,7 +29,16 @@ sources:
 #   - helm
 #   - my-app
 
-# dependencies:
-#   - name: postgresql
-#     version: 15.3.2
-#     repository: "https://charts.bitnami.com/bitnami"
+dependencies:
+  - name: database
+    version: 1.0.0
+    # repository: repository: "oci://ghcr.io/<OWNER>/<REPO>"
+    repository: "file://charts"
+  - name: backend
+    version: 1.0.0
+    # repository: repository: "oci://ghcr.io/<OWNER>/<REPO>"
+    repository: "file://charts"
+  - name: frontend
+    version: 1.0.0
+    # repository: repository: "oci://ghcr.io/<OWNER>/<REPO>"
+    repository: "file://charts"
