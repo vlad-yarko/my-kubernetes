@@ -1,0 +1,20 @@
+apiVersion: v2
+name: tls-chart
+description: Temporary chart for TLS of my-kubernetes
+type: application
+
+version: 1.0.0
+
+appVersion: "1.0.0"
+
+maintainers:
+  - name: vlad-yarko
+    email: vladislavv44444@gmail.com
+
+annotations:
+  org.opencontainers.image.source: "https://github.com/vlad-yarko/my-kubernetes"
+  org.opencontainers.image.maintainer: "vlad-yarko"
+
+home: "https://github.com/vlad-yarko/my-kubernetes"
+sources:
+  - "https://github.com/vlad-yarko/my-kubernetes"

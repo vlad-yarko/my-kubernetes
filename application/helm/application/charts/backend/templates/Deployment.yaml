@@ -48,3 +48,9 @@ spec:
             limits:
               memory: "60Mi"
               cpu: "100m"
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault

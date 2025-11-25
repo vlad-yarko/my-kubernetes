@@ -1,5 +1,6 @@
 apiVersion: v2
-name: my-kubernetes-database-chart
+# name: my-kubernetes-database-chart
+name: database-chart
 description: Database chart of my-kubernetes
 type: application
 

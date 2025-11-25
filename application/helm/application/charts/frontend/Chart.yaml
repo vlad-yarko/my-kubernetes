@@ -1,5 +1,6 @@
 apiVersion: v2
-name: my-kubernetes-frontend-chart
+# name: my-kubernetes-frontend-chart
+name: frontend-chart
 description: Frontend chart of my-kubernetes
 type: application
 

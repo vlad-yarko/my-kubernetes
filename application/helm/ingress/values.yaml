@@ -1,12 +1,10 @@
-# sharedNamespace: my-kubernetes-application
+# entryPoints:
+#   web:
+#     address: ":80"
+#   websecure:
+#     address: ":443"
 
-# Ingress:
-#   name: my-kubernetes-ingress-resource
-
-# backend:
-#   middleware:
-#     name: backend-middleware
-
-#   service:
-#     name: backend-service
-#     port: 8000
+# additionalArguments:
+#   - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+#   - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+#   - "--entrypoints.web.http.redirections.entrypoint.permanent=true"

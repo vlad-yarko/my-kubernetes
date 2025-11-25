@@ -1,4 +1,6 @@
 sharedNamespace: my-kubernetes-application
+applicationHost: my-kubernetes.chickenkiller.com
+
 
 backend:
   middleware:
@@ -23,3 +25,9 @@ backend:
 
 database:
   secretName: database-secret
+
+secret_tls:
+  name: secret-tls
+
+middleware_tls:
+  name: middleware-tls

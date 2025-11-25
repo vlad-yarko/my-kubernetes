@@ -1,6 +1,7 @@
 apiVersion: v2
-name: my-kubernetes-umbrella-chart
-description: Umbrella chart of my-kubernetes
+# name: my-kubernetes-database-chart
+name: common-chart
+description: Common chart of my-kubernetes
 type: application
 
 # Chart version — updates when chart templates/values change
@@ -28,18 +29,3 @@ sources:
 #   - kubernetes
 #   - helm
 #   - my-app
-
-dependencies:
-  - name: common-chart
-    version: 1.0.0
-    repository: "oci://ghcr.io/vlad-yarko/my-kubernetes"
-  - name: database-chart
-    version: 1.0.0
-    repository: "oci://ghcr.io/vlad-yarko/my-kubernetes"
-  - name: backend-chart
-    version: 1.0.0
-    repository: "oci://ghcr.io/vlad-yarko/my-kubernetes"
-  - name: frontend-chart
-    version: 1.0.0
-    repository: "oci://ghcr.io/vlad-yarko/my-kubernetes"
-  

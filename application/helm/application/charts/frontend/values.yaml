@@ -1,4 +1,5 @@
 sharedNamespace: my-kubernetes-application
+applicationHost: my-kubernetes.chickenkiller.com
 
 
 frontend:
@@ -20,3 +21,9 @@ frontend:
 
   ingressRoute:
     name: frontend-ingressroute
+
+secret_tls:
+  name: secret-tls
+
+middleware_tls:
+  name: middleware-tls

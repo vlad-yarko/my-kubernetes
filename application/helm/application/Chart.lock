@@ -1,0 +1,15 @@
+dependencies:
+- name: common-chart
+  repository: oci://ghcr.io/vlad-yarko/my-kubernetes
+  version: 1.0.0
+- name: database-chart
+  repository: oci://ghcr.io/vlad-yarko/my-kubernetes
+  version: 1.0.0
+- name: backend-chart
+  repository: oci://ghcr.io/vlad-yarko/my-kubernetes
+  version: 1.0.0
+- name: frontend-chart
+  repository: oci://ghcr.io/vlad-yarko/my-kubernetes
+  version: 1.0.0
+digest: sha256:3486f465424a1dadc726049fd3b3d4469fa5d20e786bf838a521d544805d3ac5
+generated: "2025-11-25T17:31:54.254289337+02:00"
