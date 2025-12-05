@@ -1,0 +1,2 @@
+sharedNamespace: my-kubernetes-application
+applicationHost: my-kubernetes.chickenkiller.com

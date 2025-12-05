@@ -1,0 +1,23 @@
+k8s_context("my-kubernetes-cluster@azure")
+
+
+# k8s_yaml(
+#     "./Namespace.yaml"
+# )
+
+
+docker_build(
+    "ghcr.io/vlad-yarko/my-kubernetes-frontend",
+    context="./",
+    dockerfile="./Dockerfile"
+)
+
+
+# chart = helm(
+#     "../helm/application/charts/frontend",
+#     name="my-kubernetes-frontend",
+#     namespace="my-kubernetes-application",
+#     values=["../helm/application/charts/frontend/values.yaml"]
+# )
+
+# k8s_yaml(chart)

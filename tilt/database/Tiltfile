@@ -1,0 +1,22 @@
+k8s_context("my-kubernetes-cluster@azure")
+
+
+# k8s_yaml(
+#     "./Namespace.yaml"
+# )
+
+
+docker_build(
+    "ghcr.io/vlad-yarko/my-kubernetes-database",
+    context="./",
+    dockerfile="./Dockerfile"
+)
+
+
+# chart = helm(
+#     "../helm/application/charts/database",
+#     name="my-kubernetes-database",
+#     namespace="my-kubernetes-application",
+# )
+
+# k8s_yaml(chart)

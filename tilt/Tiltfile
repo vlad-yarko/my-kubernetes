@@ -1,0 +1,57 @@
+# k8s_context("my-kubernetes-cluster@azure")
+allow_k8s_contexts('my-kubernetes-cluster@azure')
+
+
+# Application namespace
+
+k8s_yaml(
+    "./ApplicationNamespace.yaml"
+)
+
+
+# Ingress controller helm chart
+
+k8s_yaml(
+    "./IngressNamespace.yaml"
+)
+
+
+ingress_chart = helm(
+    "./helm/ingress",
+    name="my-kubernetes-ingress",
+    namespace="my-kubernetes-ingress",
+    values=["./helm/ingress/values.yaml"]
+)
+
+k8s_yaml(ingress_chart)
+
+
+# Applicaton helm charts
+
+include("./database/Tiltfile")
+include("./backend/Tiltfile")
+include("./frontend/Tiltfile")
+
+database_chart = helm(
+    "./helm/application/charts/database",
+    name="my-kubernetes-database",
+    namespace="my-kubernetes-application",
+)
+
+backend_chart = helm(
+    "./helm/application/charts/backend",
+    name="my-kubernetes-backend",
+    namespace="my-kubernetes-application",
+    values=["./helm/application/charts/backend/values.yaml"]
+)
+
+frontend_chart = helm(
+    "./helm/application/charts/frontend",
+    name="my-kubernetes-frontend",
+    namespace="my-kubernetes-application",
+    values=["./helm/application/charts/frontend/values.yaml"]
+)
+
+k8s_yaml(database_chart)
+k8s_yaml(backend_chart)
+k8s_yaml(frontend_chart)
