@@ -8,7 +8,8 @@ spec:
     - web
   routes:
     - kind: Rule
-      match: Host(`{{ .Values.applicationHost }}`) && PathPrefix(`{{ .Values.backend.middleware.prefix }}`)
+      # match: Host(`{{ .Values.applicationHost }}`) && PathPrefix(`{{ .Values.backend.middleware.prefix }}`)
+      match: PathPrefix(`{{ .Values.backend.middleware.prefix }}`)
       middlewares:
         - name: {{ .Values.backend.middleware.name }}
         # - name: {{ .Values.middleware_tls.name }}

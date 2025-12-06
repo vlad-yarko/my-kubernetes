@@ -26,6 +26,8 @@ export default function App() {
     return (
         <div>
             <h1>Request count: {count}</h1>
+            <p>Anton</p>
+            <p>Anton</p>
         </div>
     )
 }

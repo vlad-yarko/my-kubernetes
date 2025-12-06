@@ -1,2 +1,3 @@
 sharedNamespace: my-kubernetes-application
-applicationHost: my-kubernetes.chickenkiller.com
+# applicationHost: my-kubernetes.chickenkiller.com
+applicationHost: my-kubernetes.mooo.com

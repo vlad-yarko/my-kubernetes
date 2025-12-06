@@ -50,3 +50,6 @@ database:
   migrationJobContainerName: database-job-migration-container
   migrationJobBackoffLimit: 3
   host: "database-postgresql"
+
+# applicationHost: my-kubernetes.chickenkiller.com
+applicationHost: my-kubernetes.mooo.com
