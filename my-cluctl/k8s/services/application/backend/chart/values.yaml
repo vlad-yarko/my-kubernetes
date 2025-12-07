@@ -1,0 +1,34 @@
+sharedNamespace: my-kubernetes-application
+# applicationHost: my-kubernetes.chickenkiller.com
+applicationHost: my-kubernetes.mooo.com
+
+
+backend:
+  middleware:
+    name: backend-middleware
+    prefix: /api
+
+  deployment:
+    name: backend-deployment
+    podName: backend-pod
+    replicas: 2
+    containerName: backend-container
+    image: ghcr.io/vlad-yarko/my-kubernetes-backend:1.0.0
+    containerPort: 8000
+
+  service:
+    name: backend-service
+    port: 8000
+
+  ingressRoute:
+    name: backend-ingressroute
+
+
+database:
+  secretName: database-secret
+
+secret_tls:
+  name: secret-tls
+
+middleware_tls:
+  name: middleware-tls

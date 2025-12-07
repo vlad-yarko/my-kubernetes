@@ -1,0 +1,18 @@
+targets:
+  - name: staging
+    args:
+      environment: staging
+      environmentType: non-prod
+    context: my-kubernetes-cluster@azure
+
+  - name: production
+    args:
+      environment: production
+      environmentType: prod
+    context: my-kubernetes-cluster@azure
+
+args:
+  - name: environment
+  - name: environmentType
+
+discriminator: kluctl-{{ target.name }}

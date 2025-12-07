@@ -1,0 +1,9 @@
+sharedNamespace: my-kubernetes-application
+
+
+secret_tls:
+  name: secret-tls
+
+
+middleware_tls:
+  name: middleware-tls

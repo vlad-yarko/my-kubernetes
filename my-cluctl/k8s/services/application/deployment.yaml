@@ -1,0 +1,7 @@
+vars:
+  - file: config/{{ args.environment }}.yaml
+
+deployments:
+  - include: database
+  - include: backend
+  - include: frontend
