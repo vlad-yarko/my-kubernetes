@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tls-configmap
+data:
+  JGa2zynAd8fpWfH5BQghPArnqvqo0cMXRNbWlyUrzXA: "JGa2zynAd8fpWfH5BQghPArnqvqo0cMXRNbWlyUrzXA.kgEWgLTPNmT78vzeXvMcVEAMT2eenkcnCw2wo99_Mpw"

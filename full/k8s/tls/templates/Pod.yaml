@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tls-pod
+  labels:
+    app: tls-pod
+spec:
+  containers:
+  - name: tls-container
+    image: nginx:alpine
+    volumeMounts:
+    - name: tls-key
+      mountPath: /usr/share/nginx/html/.well-known/acme-challenge
+  volumes:
+  - name: tls-key
+    configMap:
+      name: tls-configmap

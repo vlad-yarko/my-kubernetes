@@ -1,6 +1,6 @@
 sharedNamespace: {{ namespaces.application.name }}
 # applicationHost: my-kubernetes.chickenkiller.com
-applicationHost: my-kubernetes.mooo.com
+applicationHost: kubernetes-yep.duckdns.org
 
 
 backend:
@@ -13,7 +13,8 @@ backend:
     podName: backend-pod
     replicas: {{ replica }}
     containerName: backend-container
-    image: ghcr.io/vlad-yarko/my-kubernetes-backend:1.0.0
+    # image: ghcr.io/vlad-yarko/my-kubernetes-backend:1.0.0
+    image: kubernetes-yep-registry.duckdns.org/my-kubernetes/backend:prod
     containerPort: 8000
 
   service:
@@ -32,3 +33,6 @@ secret_tls:
 
 middleware_tls:
   name: middleware-tls
+
+harborSecret:
+  name: harbor-secret

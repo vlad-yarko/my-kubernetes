@@ -13,7 +13,8 @@ frontend:
     replicas: 2
     podName: frontend-pod
     containerName: frontend-container
-    image: ghcr.io/vlad-yarko/my-kubernetes-frontend:1.0.1
+    # image: ghcr.io/vlad-yarko/my-kubernetes-frontend:1.0.1
+    image: kubernetes-yep-registry.duckdns.org/my-kubernetes/frontend:prod
     containerPort: 8080
 
   service:
@@ -23,8 +24,14 @@ frontend:
   ingressRoute:
     name: frontend-ingressroute
 
+  hpa:
+    name: frontend-hpa
+
 secret_tls:
   name: secret-tls
 
 middleware_tls:
   name: middleware-tls
+
+harborSecret:
+  name: harbor-secret

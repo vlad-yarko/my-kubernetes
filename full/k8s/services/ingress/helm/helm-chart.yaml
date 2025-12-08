@@ -1,11 +1,13 @@
 helmChart:
-  repo: oci://ghcr.io/vlad-yarko/my-kubernetes/my-kubernetes-ingress-chart
+  repo: oci://kubernetes-yep-registry.duckdns.org/my-kubernetes/ingress-chart-k
+  # repo: oci://ghcr.io/vlad-yarko/my-kubernetes/my-kubernetes-ingress-chart
   # chartName: my-kubernetes-ingress-chart
   chartVersion: 1.0.0
   releaseName: my-kubernetes-ingress-{{ args.environment }}
-  namespace: {{ namespaces.ingress.name }}
+  # namespace: {{ namespaces.ingress.name }}
   # namespace: default
+  namespace: my-kubernetes-ingress
   output: helm-rendered.yaml
-  skipPrePull: true
+  # skipPrePull: true
   # values: 
   #   - helm-values-{{ args.environment }}.yaml

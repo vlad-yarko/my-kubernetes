@@ -16,3 +16,4 @@ args:
   - name: environmentType
 
 discriminator: kluctl-{{ target.name }}
+

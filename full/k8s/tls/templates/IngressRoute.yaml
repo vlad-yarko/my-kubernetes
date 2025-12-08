@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: tls-ingressroute
+spec:
+  routes:
+    - kind: Rule
+      match: Host(`kubernetes-yep.duckdns.org`) && Path(`/.well-known/acme-challenge/JGa2zynAd8fpWfH5BQghPArnqvqo0cMXRNbWlyUrzXA`)
+      services:
+        - kind: Service
+          name: tls-service
+          port: 80
+          scheme: http

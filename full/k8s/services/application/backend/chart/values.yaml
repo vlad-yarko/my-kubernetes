@@ -13,7 +13,8 @@ backend:
     podName: backend-pod
     replicas: 2
     containerName: backend-container
-    image: ghcr.io/vlad-yarko/my-kubernetes-backend:1.0.0
+    # image: ghcr.io/vlad-yarko/my-kubernetes-backend:1.0.0
+    image: kubernetes-yep-registry.duckdns.org/my-kubernetes/backend:prod
     containerPort: 8000
 
   service:
@@ -22,6 +23,9 @@ backend:
 
   ingressRoute:
     name: backend-ingressroute
+  
+  hpa:
+    name: backend-hpa
 
 
 database:
@@ -32,3 +36,6 @@ secret_tls:
 
 middleware_tls:
   name: middleware-tls
+
+harborSecret:
+  name: harbor-secret

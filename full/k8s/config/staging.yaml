@@ -1,5 +1,9 @@
 namespaces:
+  # application:
+  #   name: my-kubernetes-application-staging
+  # ingress:
+  #   name: my-kubernetes-ingress-staging
   application:
-    name: my-kubernetes-application-staging
+    name: my-kubernetes-application
   ingress:
-    name: my-kubernetes-ingress-staging
+    name: my-kubernetes-ingress

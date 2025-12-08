@@ -44,7 +44,8 @@ sharedNamespace: {{ namespaces.application.name }}
 
 database:
   secretName: database-secret
-  migrationJobImage: ghcr.io/vlad-yarko/my-kubernetes-database:1.0.0
+  # migrationJobImage: ghcr.io/vlad-yarko/my-kubernetes-database:1.0.0
+  migrationJobImage: kubernetes-yep-registry.duckdns.org/my-kubernetes/database:prod
   migrationJobName: database-job-migration
   migrationJobPodName: database-job-migration-pod
   migrationJobContainerName: database-job-migration-container
@@ -53,3 +54,6 @@ database:
 
 # applicationHost: my-kubernetes.chickenkiller.com
 applicationHost: my-kubernetes.mooo.com
+
+harborSecret:
+  name: harbor-secret

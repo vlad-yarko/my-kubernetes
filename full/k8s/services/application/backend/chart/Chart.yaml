@@ -1,6 +1,6 @@
 apiVersion: v2
 # name: my-kubernetes-backend-chart
-name: backend-chart
+name: backend-chart-k
 description: Backend chart of my-kubernetes
 type: application
 

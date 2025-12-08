@@ -1,8 +1,8 @@
-sharedNamespace: my-kubernetes-application
+sharedNamespace: registry
 
 
 secret_tls:
-  name: secret-tls
+  name: registry-secret-tls
 
 
 middleware_tls:
