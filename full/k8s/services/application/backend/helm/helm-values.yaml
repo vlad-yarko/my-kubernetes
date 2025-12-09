@@ -23,6 +23,8 @@ backend:
 
   ingressRoute:
     name: backend-ingressroute
+  
+  secret: {{ args.environment }}
 
 
 database:

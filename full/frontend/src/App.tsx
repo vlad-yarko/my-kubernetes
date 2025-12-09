@@ -28,6 +28,7 @@ export default function App() {
             <h1>Request count: {count}</h1>
             <p>Anton</p>
             <p>Anton</p>
+            {/* <p>{process.env.REACT_PUBLIC_ANTON}</p> */}
         </div>
     )
 }

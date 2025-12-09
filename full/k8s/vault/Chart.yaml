@@ -1,11 +1,11 @@
 apiVersion: v2
 # name: my-kubernetes-database-chart
-name: common-chart-k
-description: Common chart of my-kubernetes
+name: vault-chart-k
+description: Vault chart of my-kubernetes
 type: application
 
 # Chart version — updates when chart templates/values change
-version: 1.0.3
+version: 1.0.0
 
 # App version — the app's actual version (image tag, etc)
 appVersion: "1.0.0"
@@ -29,3 +29,8 @@ sources:
 #   - kubernetes
 #   - helm
 #   - my-app
+
+dependencies:
+  - name: vault
+    version: 0.31.0
+    repository: "https://helm.releases.hashicorp.com"

@@ -506,6 +506,8 @@ controller:
           app: nginx
         annotations:
           service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
+          service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: "/healthz"
+      service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: "/healthz"
     # -- Labels to be added to both controller services.
     labels: {}
     # -- Type of the external controller service.
@@ -1280,3 +1282,10 @@ portNamePrefix: ""
 # This can be generated with: `openssl dhparam 4096 2> /dev/null | base64`
 ## Ref: https://github.com/kubernetes/ingress-nginx/tree/main/docs/examples/customization/ssl-dh-param
 dhParam: ""
+
+
+
+# controller:
+#   service:
+#     annotations:
+#       service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: "/healthz"

@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -68,3 +70,9 @@ async def health_endpoint(session: AsyncSession = Depends(get_session)):
     except Exception:
         return JSONResponse(content={"status": "error"}, status_code=status.HTTP_503_SERVICE_UNAVAILABLE)
 
+
+
+@app.get("/react")
+async def react_endpoint():
+    data = os.getenv("REACT_PUBLIC_ANTON")
+    return data

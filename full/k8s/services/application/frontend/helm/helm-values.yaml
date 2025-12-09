@@ -23,6 +23,8 @@ frontend:
 
   ingressRoute:
     name: frontend-ingressroute
+  
+  secret: {{ args.environment }}
 
 secret_tls:
   name: secret-tls

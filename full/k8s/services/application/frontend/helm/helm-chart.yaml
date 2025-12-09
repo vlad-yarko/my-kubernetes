@@ -2,7 +2,7 @@ helmChart:
   # path: ../chart
   repo: oci://kubernetes-yep-registry.duckdns.org/my-kubernetes/frontend-chart-k
   # repo: oci://ghcr.io/vlad-yarko/my-kubernetes/frontend-chart
-  chartVersion: 1.0.0
+  chartVersion: 1.0.3
   releaseName: my-kubernetes-frontend-{{ args.environment }}
   # namespace: {{ namespaces.application.name }}
   # namespace: default

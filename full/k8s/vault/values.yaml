@@ -1,0 +1,19 @@
+server:
+  extraEnvironmentVars:
+    VAULT_DEV_ROOT_TOKEN_ID: "business"   # for dev/testing only
+  standalone:
+    enabled: false
+  ha:
+    enabled: true
+    replicas: 3
+    raft:
+      enabled: true
+      # PVC for each pod
+      setStorageClass: "standard"   # change to your k8s storage class
+      storageSize: "5Gi"
+
+injector:
+  enabled: true  # Vault Agent Injector
+
+ui:
+  enabled: true  # optional, Vault UI

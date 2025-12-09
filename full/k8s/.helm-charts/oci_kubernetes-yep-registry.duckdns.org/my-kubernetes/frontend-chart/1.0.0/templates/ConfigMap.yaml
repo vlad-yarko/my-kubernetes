@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Values.frontend.configmap.name }}
-data:
-  REACT_APP_API_URL: {{ .Values.frontend.configmap.REACT_APP_API_URL }}
