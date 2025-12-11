@@ -1,0 +1,20 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: grafana-ingress-route
+  namespace: {{ .Values.sharedNamespace }}
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: Host(`{{ .Values.applicationHost }}`) && PathPrefix(`/grafana`)
+      # middlewares:
+      #   - name: grafana-middleware
+      services:
+        - kind: Service
+          name: my-kubernetes-prometheus-{{ .Values.environment }}-grafana
+          port: 80
+          scheme: http
+  tls:
+    secretName: grafana-tls

@@ -1,0 +1,2 @@
+sharedNamespace: {{ namespaces.monitoring.name }}
+applicationHost: kubernetes-yep.duckdns.org

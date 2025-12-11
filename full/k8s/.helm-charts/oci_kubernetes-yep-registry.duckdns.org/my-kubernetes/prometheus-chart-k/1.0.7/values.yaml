@@ -1,0 +1,88 @@
+# Grafana configuration
+# grafana:
+#   # Add Loki as a data source
+#   additionalDataSources:
+#     - name: Loki
+#       type: loki
+#       url: http://my-kubernetes-loki-gateway.my-kubernetes-monitoring.svc.cluster.local
+#       access: proxy
+#       # Even with auth_enabled: false, Loki requires an org ID header
+#       # This is a known quirk - the value can be anything since auth is disabled
+#       jsonData:
+#         httpHeaderName1: "X-Scope-OrgID"
+#       secureJsonData:
+#         httpHeaderValue1: "fake"
+
+# Production options (commented out):
+# Prometheus storage:
+# prometheus:
+#   prometheusSpec:
+#     retention: 15d
+#     storageSpec:
+#       volumeClaimTemplate:
+#         spec:
+#           storageClassName: fast
+#           resources:
+#             requests:
+#               storage: 50Gi
+
+# Alertmanager high availability:
+# alertmanager:
+#   alertmanagerSpec:
+#     replicas: 3
+
+
+kube-prometheus-stack:
+  grafana:
+  # Add Loki as a data source
+    # additionalDataSources:
+    #   - name: Loki
+    #     type: loki
+    #     url: http://my-kubernetes-loki-production-gateway.my-kubernetes-monitoring.svc.cluster.local:3100
+    #     access: proxy
+    #     # Even with auth_enabled: false, Loki requires an org ID header
+    #     # This is a known quirk - the value can be anything since auth is disabled
+    #     jsonData:
+    #       httpHeaderName1: "X-Scope-OrgID"
+    #     secureJsonData:
+    #       httpHeaderValue1: "fake"
+    adminUser: business
+    adminPassword: business
+    grafana.ini:
+      server:
+        # root_url: "https://kubernetes-yep.duckdns.org/grafana/"
+        root_url: "https://kubernetes-yep.duckdns.org/grafana"
+        serve_from_sub_path: true
+    serviceMonitor:
+      path: "/grafana/metrics"
+      # path: "/metrics"
+
+grafana:
+# Add Loki as a data source
+  # additionalDataSources:
+  #   - name: Loki
+  #     type: loki
+  #     url: http://my-kubernetes-loki-production-gateway.my-kubernetes-monitoring.svc.cluster.local:3100
+  #     access: proxy
+  #     # Even with auth_enabled: false, Loki requires an org ID header
+  #     # This is a known quirk - the value can be anything since auth is disabled
+  #     jsonData:
+  #       httpHeaderName1: "X-Scope-OrgID"
+  #     secureJsonData:
+  #       httpHeaderValue1: "fake"
+  adminUser: business
+  adminPassword: business
+  grafana.ini:
+    server:
+      # root_url: "https://kubernetes-yep.duckdns.org/grafana/"
+      root_url: "https://kubernetes-yep.duckdns.org/grafana"
+      serve_from_sub_path: true
+  serviceMonitor:
+    path: "/grafana/metrics"
+    # path: "/metrics"
+
+
+sharedNamespace: my-kubernetes-monitoring
+applicationHost: kubernetes-yep.duckdns.org
+
+environment: production

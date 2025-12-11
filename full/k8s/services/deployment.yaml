@@ -5,3 +5,5 @@ deployments:
   - include: ingress
   - barrier: true
   - include: application
+  - barrier: true
+  - include: monitoring

@@ -11,6 +11,11 @@ auth:
   postgresPassword: "1234"
 fullnameOverride: "database-postgresql"
 
+
+readReplicas:
+  podLabels:
+    app: database
+
 postgresql:
   fullnameOverride: "database-postgresql"
   auth:
@@ -27,6 +32,12 @@ postgresql:
     registry: docker.io
     repository: bitnamilegacy/postgresql
     tag: 16.3.0-debian-12-r9
+  primary:
+    podLabels:
+      app: database
+  readReplicas:
+    podLabels:
+      app: database
 image:
   repository: bitnamilegacy/postgresql
 
@@ -38,6 +49,8 @@ primary:
     limits:
       cpu: 100m
       memory: 50m
+  podLabels:
+    app: database
 
 
 sharedNamespace: {{ namespaces.application.name }}

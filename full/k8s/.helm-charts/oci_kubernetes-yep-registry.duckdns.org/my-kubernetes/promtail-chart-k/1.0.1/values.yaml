@@ -1,0 +1,71 @@
+config:
+  # clients:
+  #   - url: http://my-kubernetes-loki-production-gateway.my-kubernetes-monitoring.svc.cluster.local:3100/loki/api/v1/push
+
+  # positions:
+  #   filename: /run/promtail/positions.yaml
+
+  scrape_configs:
+    - job_name: kubernetes-pods
+      # pipeline_stages:
+      #   - docker: {}
+      kubernetes_sd_configs:
+        - role: pod
+      # relabel_configs:
+      #   - source_labels: [__meta_kubernetes_pod_label_app]
+      #     target_label: app
+      # pipeline_stages:
+      #   # parse container logs (JSON if your app logs JSON)
+      #   - json:
+      #       expressions:
+      #         stream: stream
+      #         attrs: attrs
+      #         tag: attrs.tag
+      relabel_configs:
+        # add pod label "app" as label
+        - source_labels: [__meta_kubernetes_pod_label_app]
+          target_label: app
+        # capture namespace
+        - source_labels: [__meta_kubernetes_namespace]
+          target_label: namespace
+        # capture pod name
+        - source_labels: [__meta_kubernetes_pod_name]
+          target_label: pod
+
+
+
+promtail:
+  config:
+    # clients:
+    #   - url: http://my-kubernetes-loki-prodution-gateway.my-kubernetes-monitoring.svc.cluster.local:3100/loki/api/v1/push
+
+    # positions:
+    #   filename: /run/promtail/positions.yaml
+
+    scrape_configs:
+      - job_name: kubernetes-pods
+        # pipeline_stages:
+        #   - docker: {}
+        kubernetes_sd_configs:
+          - role: pod
+        # relabel_configs:
+        #   - source_labels: [__meta_kubernetes_pod_label_app]
+        #     target_label: app
+        # pipeline_stages:
+        #   # parse container logs (JSON if your app logs JSON)
+        #   - json:
+        #       expressions:
+        #         stream: stream
+        #         attrs: attrs
+        #         tag: attrs.tag
+        relabel_configs:
+          # add pod label "app" as label
+          - source_labels: [__meta_kubernetes_pod_label_app]
+            target_label: app
+          # capture namespace
+          - source_labels: [__meta_kubernetes_namespace]
+            target_label: namespace
+          # capture pod name
+          - source_labels: [__meta_kubernetes_pod_name]
+            target_label: pod
+

@@ -1,0 +1,32 @@
+sharedNamespace: {{ namespaces.monitoring.name }}
+applicationHost: kubernetes-yep.duckdns.org
+environment: {{ args.environment }}
+
+
+kube-prometheus-stack:
+  grafana:
+    additionalDataSources:
+      - name: Loki
+        type: loki
+        url: http://my-kubernetes-loki-{{ args.environment }}-gateway.my-kubernetes-monitoring.svc.cluster.local:80
+        access: proxy
+        # Even with auth_enabled: false, Loki requires an org ID header
+        # This is a known quirk - the value can be anything since auth is disabled
+        jsonData:
+          httpHeaderName1: "X-Scope-OrgID"
+        secureJsonData:
+          httpHeaderValue1: "fake"
+
+grafana:
+# Add Loki as a data source
+  additionalDataSources:
+    - name: Loki
+      type: loki
+      url: http://my-kubernetes-loki-{{ args.environment }}-gateway.my-kubernetes-monitoring.svc.cluster.local:80
+      access: proxy
+      # Even with auth_enabled: false, Loki requires an org ID header
+      # This is a known quirk - the value can be anything since auth is disabled
+      jsonData:
+        httpHeaderName1: "X-Scope-OrgID"
+      secureJsonData:
+        httpHeaderValue1: "fake"
