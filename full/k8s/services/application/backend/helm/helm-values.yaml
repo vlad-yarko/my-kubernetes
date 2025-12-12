@@ -38,3 +38,5 @@ middleware_tls:
 
 harborSecret:
   name: harbor-secret
+
+environment: {{ args.environment }}

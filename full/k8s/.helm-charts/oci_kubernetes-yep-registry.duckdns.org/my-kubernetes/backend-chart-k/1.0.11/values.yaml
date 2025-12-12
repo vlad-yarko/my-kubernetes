@@ -41,3 +41,5 @@ middleware_tls:
 
 harborSecret:
   name: harbor-secret
+
+environment: production

@@ -70,3 +70,6 @@ applicationHost: my-kubernetes.mooo.com
 
 harborSecret:
   name: harbor-secret
+
+
+environment: {{ args.environment }}
