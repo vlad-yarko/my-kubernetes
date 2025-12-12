@@ -408,7 +408,7 @@ enableMigrateHelmHook: false
 # uaaSecretName:
 
 metrics:
-  enabled: false
+  enabled: true
   core:
     path: /metrics
     port: 8001
@@ -426,10 +426,11 @@ metrics:
   ## https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/getting-started.md
   ##
   serviceMonitor:
-    enabled: false
-    additionalLabels: {}
+    enabled: true
+    additionalLabels:
+      release: my-kubernetes-prometheus-production
     # Scrape interval. If not set, the Prometheus default scrape interval is used.
-    interval: ""
+    interval: "15s"
     # Metric relabel configs to apply to samples before ingestion.
     metricRelabelings:
       []
